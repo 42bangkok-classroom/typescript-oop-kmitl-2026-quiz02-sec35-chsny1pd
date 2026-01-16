@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function getPostsByUser(userId: number) {
+export async function getPostsByUser(userId: number) {
   const url = 'https://jsonplaceholder.typicode.com/posts';
 
   try {
@@ -25,5 +25,3 @@ async function getPostsByUser(userId: number) {
     return [];
   }
 }
-
-getPostsByUser(1);
