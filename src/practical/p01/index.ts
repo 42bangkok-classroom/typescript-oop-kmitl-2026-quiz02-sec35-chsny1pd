@@ -1,4 +1,4 @@
-// //export function getEdgePosts() {}
+//export function getEdgePosts() {}
 // import * as https from 'https'; // 1. Import module สำหรับเรียกใช้ HTTP
 
 // function getEdgePosts(): void {
@@ -32,4 +32,4 @@
 
 // // ---- เรียกใช้งานฟังก์ชัน ----
 // getEdgePosts();
-console.log('sadadadad')
+console.log('dasdad')
