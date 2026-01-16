@@ -52,13 +52,13 @@ axios.get(url, {
 const allData = response.data;
 
 
-const filteredData = allData.map((item: { id: any; title: any; }) => ({
+const getEdgePosts = allData.map((item: { id: any; title: any; }) => ({
     id: item.id,
     title: item.title
 }));
 
-const firstItem = filteredData[0]; 
-const lastItem = filteredData[filteredData.length - 1]; 
+const firstItem = getEdgePosts[0]; 
+const lastItem = getEdgePosts[getEdgePosts.length - 1]; 
 
 console.log(firstItem);
 console.log(lastItem);
