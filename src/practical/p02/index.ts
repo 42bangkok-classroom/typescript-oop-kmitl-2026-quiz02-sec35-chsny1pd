@@ -1,25 +1,28 @@
 import axios from 'axios';
 
-export const getPostsByUser = async(userId: number) : Promise<any> => {
+async function getPostsByUser(userId: number) {
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+
   try {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    const data = response.data;
+    // 1. ดึงข้อมูลจาก API ด้วย axios
+    const response = await axios.get(url);
+    const allPosts = response.data;
 
-    // ใช้ .map() เพื่อสร้าง Array ใหม่ที่มีเฉพาะ 'id' และ 'title'
-    const filteredData = data.map((item: { id: any; title: any; }) => ({
-      id: item.id,
-      title: item.title
-    }));
-    const firstItem = filteredData[0]; 
-    const lastItem = filteredData[filteredData.length - 1];
+    // 2. ใช้ Array Method (.filter และ .map) เพื่อเลือกเฉพาะข้อมูลที่ต้องการ
+    // กรองเอาเฉพาะ userId ที่ตรงกัน และเลือกส่งกลับแค่ id กับ title
+    const filteredPosts = allPosts
+      .filter((post: { userId: any; }) => post.userId === userId)
+      .map((post: { id: any; title: any; }) => ({
+        id: post.id,
+        title: post.title,
+      }));
 
-    console.log(firstItem);
-    console.log(lastItem);
+    // 3. Return ค่าออกไป (ตามโจทย์ระบุว่าถ้าไม่เจอให้เป็น array ว่าง ซึ่ง filter จัดการให้แล้ว)
+    return filteredPosts;
 
-    const result = [firstItem, lastItem];
-    return result.filter(cart => cart.userId === userId);
-    } catch (error) {
-    console.error("เกิดข้อผิดพลาด:", error);
+  } catch (error) {
+    // จัดการ Error (ส่งค่ากลับเป็น array ว่าง หรือจัดการตามความเหมาะสม)
+    return [];
   }
 }
 
