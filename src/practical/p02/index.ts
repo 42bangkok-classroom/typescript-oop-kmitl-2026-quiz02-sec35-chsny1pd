@@ -42,7 +42,7 @@ interface FilteredPost {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-async function getPostsByUser(userId: number): Promise<FilteredPost[] | undefined> {
+export async function getPostsByUser(userId: number): Promise<FilteredPost[] | undefined> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {

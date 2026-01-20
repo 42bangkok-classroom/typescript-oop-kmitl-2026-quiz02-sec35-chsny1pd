@@ -41,7 +41,7 @@ interface SimplifiedPost {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
+export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {
