@@ -63,16 +63,25 @@ export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
      */
     if (posts.length === 0) return [];
 
-    // เลือกตัวแรกและตัวสุดท้าย
-    const firstPost = posts[0];
-    const lastPost = posts[posts.length - 1];
-
     // ใช้ Array method (map) เพื่อสร้างอาเรย์ใหม่ที่มีเฉพาะ id และ title
     // หรือจะสร้าง Array ตรงๆ แล้วครอบด้วย map เพื่อดึงเฉพาะ field ที่ต้องการ
-    return  [firstPost, lastPost].map(({ id, title }) => ({
-      id,
-      title
-    }));
+    const mapposts = posts.map((post) => ({
+      id: post.id,
+      title: post.title
+    }))
+
+    // เลือกตัวแรกและตัวสุดท้าย
+    const firstPost = mapposts[0];
+    const lastPost = mapposts[posts.length - 1];
+
+    const result = [firstPost, lastPost]
+
+    return result
+
+    const run = async () => {
+    const result = await getEdgePosts();
+    console.log(result);
+    };
 
   } catch (error) {
     // จัดการ error ตามความเหมาะสม (ในที่นี้คือ return undefined หรือจะโยน error ต่อก็ได้)
@@ -80,10 +89,11 @@ export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
   }
 }
 
-//เพื่อไม่ให้ติด Pending 
+//เพื่อให้ค่าไม่ติด pending
 const run = async () => {
-  const result = await getEdgePosts();
-  console.log(result);
+    const result = await getEdgePosts();
+    console.log(result);
+    return result
 };
 
-run();
+run()
