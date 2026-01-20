@@ -14,7 +14,7 @@ interface SafedComment {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-export async function safeFetchComment(): Promise<SafedComment[]|null> {
+export async function safeFetchComment(commentId: number): Promise<SafedComment[]|null> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {
@@ -38,7 +38,9 @@ export async function safeFetchComment(): Promise<SafedComment[]|null> {
 
     // ใช้ Array method (map) เพื่อสร้างอาเรย์ใหม่ที่มีเฉพาะ id และ title
     // หรือจะสร้าง Array ตรงๆ แล้วครอบด้วย map เพื่อดึงเฉพาะ field ที่ต้องการ
-    const mapcomments = comments.map((comment) => ({
+    const filteredComments = comments.filter((comment) => comment.postId === commentId)
+
+    const mapcomments = filteredComments.map((comment) => ({
       id: comment.id,
       body: comment.body
     }))
