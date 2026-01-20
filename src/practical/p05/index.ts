@@ -23,7 +23,7 @@ export async function safeFetchComment(commentId: number): Promise<null|SafedCom
      * <Post[]> คือการระบุ Generic เพื่อบอกว่าข้อมูลที่ตอบกลับมา (response.data) 
      * จะมีโครงสร้างเป็น Array ของวัตถุ Post
      */
-    const response = await axios.get<Comment>('https://jsonplaceholder.typicode.com/comments/{id}');
+    const response = await axios.get<Comment>('https://jsonplaceholder.typicode.com/comments/${commentId}');
     /**
      * 4. ดึงข้อมูลจริง (Body) ที่ได้จาก API มาเก็บไว้ในตัวแปร posts
      * ซึ่งตัวแปรนี้จะเป็น Array ที่บรรจุโพสต์ทั้งหมด (ปกติจะมี 100 โพสต์)
