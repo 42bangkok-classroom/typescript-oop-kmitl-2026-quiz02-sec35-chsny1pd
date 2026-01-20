@@ -39,7 +39,7 @@ export async function countCommentsByPost(): Promise<CommentCountMap> {
      * ถ้าข้อมูลที่ได้มาเป็น Array ว่างเปล่า (ไม่มีโพสต์เลย) 
      * ให้หยุดการทำงานและส่ง Array เปล่ากลับออกไปทันที
      */
-    if (!comments.length) return [];
+    if (!comments.length) return {};
 
     /**
      * ใช้ .reduce() เพื่อยุบรวมอาเรย์คอมเมนต์ให้กลายเป็น Object เพียงอันเดียว
