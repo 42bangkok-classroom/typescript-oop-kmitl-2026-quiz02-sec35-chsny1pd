@@ -36,16 +36,16 @@ export async function getPostsByUser(userId: number): Promise<FilteredPost[]> {
      */
     if (!posts.length) return [];
 
-    // คืนค่าที่โจทย์ต้องการ
-    return posts.map(({ id, title }) => { 
-    // ใช้ Array method (filter) เพื่อกรองหาอาเรย์ที่ มี userID ตรงกัน
+     // ใช้ Array method (filter) เพื่อกรองหาอาเรย์ที่ มี userID ตรงกัน
     const filteredPosts = posts.filter((post) => post.userId === userId)
-    // คืนค่าอาเรย์ใหม่ที่มีเฉพาะ id และ title
-    return {
-     id,
-     title
-    };
-    });
+
+    // ใช้ Array method (map) เพื่อสร้างอาเรย์ใหม่ที่มีเฉพาะ id และ title
+    // หรือจะสร้าง Array ตรงๆ แล้วครอบด้วย map เพื่อดึงเฉพาะ field ที่ต้องการ
+    return filteredPosts.map(({ id, title }) => ({
+      id,
+      title
+    }));
+
 
   } catch (error) {
     // จัดการ error ตามความเหมาะสม (ในที่นี้คือ return undefined หรือจะโยน error ต่อก็ได้)

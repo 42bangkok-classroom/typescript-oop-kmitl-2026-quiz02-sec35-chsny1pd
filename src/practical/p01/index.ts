@@ -34,7 +34,7 @@ export async function getEdgePosts(): Promise<SimplifiedPost[]> {
      * ถ้าข้อมูลที่ได้มาเป็น Array ว่างเปล่า (ไม่มีโพสต์เลย) 
      * ให้หยุดการทำงานและส่ง Array เปล่ากลับออกไปทันที
      */
-    if (posts.length < 0) return [];
+    if (!posts.length) return [];
 
     // ใช้ Array method (map) เพื่อสร้างอาเรย์ใหม่ที่มีเฉพาะ id และ title
     // หรือจะสร้าง Array ตรงๆ แล้วครอบด้วย map เพื่อดึงเฉพาะ field ที่ต้องการ
