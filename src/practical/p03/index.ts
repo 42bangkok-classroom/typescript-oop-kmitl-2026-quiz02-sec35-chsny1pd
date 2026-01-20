@@ -18,7 +18,7 @@ interface PostWithCount {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-export async function mapPostWithCommentCoun(): Promise<PostWithCount[]> {
+export async function mapPostWithCommentCount(): Promise<PostWithCount[]> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {
