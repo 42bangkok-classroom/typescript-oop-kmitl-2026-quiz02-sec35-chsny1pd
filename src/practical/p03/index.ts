@@ -40,7 +40,7 @@ export async function mapPostWithCommentCount(): Promise<PostWithCount[]> {
      * ถ้าข้อมูลที่ได้มาเป็น Array ว่างเปล่า (ไม่มีโพสต์เลย) 
      * ให้หยุดการทำงานและส่ง Array เปล่ากลับออกไปทันที
      */
-    if (!posts.length||!comments.length) return [];
+    if (!posts.length) return [];
 
     // คืนค่าที่โจทย์ต้องการ
     return posts.map((post) => { 
