@@ -14,7 +14,7 @@ interface SafedComment {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-export async function safeFetchComment(commentId: number): Promise<SafedComment[]|null|SafedComment> {
+export async function safeFetchComment(commentId: number): Promise<null|SafedComment> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {
@@ -40,7 +40,7 @@ export async function safeFetchComment(commentId: number): Promise<SafedComment[
       id: comments.id,
       body: comments.body
     }
-    
+
   } catch (error) {
     // จัดการ error ตามความเหมาะสม (ในที่นี้คือ return undefined หรือจะโยน error ต่อก็ได้)
     return null
