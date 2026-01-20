@@ -42,7 +42,7 @@ interface FilteredPost {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-export async function getPostsByUser(userId: number): Promise<FilteredPost[] | undefined> {
+export async function getPostsByUser(userId: number): Promise<FilteredPost[]> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {
@@ -62,7 +62,7 @@ export async function getPostsByUser(userId: number): Promise<FilteredPost[] | u
      * ถ้าข้อมูลที่ได้มาเป็น Array ว่างเปล่า (ไม่มีโพสต์เลย) 
      * ให้หยุดการทำงานและส่ง Array เปล่ากลับออกไปทันที
      */
-    if (posts.length === 0) return [];
+    if (!posts.length) return [];
 
     // ใช้ Array method (filter) เพื่อกรองหาอาเรย์ที่ มี userID ตรงกัน
     const filteredPosts = posts.filter((post) => post.userId === userId)
@@ -76,7 +76,7 @@ export async function getPostsByUser(userId: number): Promise<FilteredPost[] | u
 
   } catch (error) {
     // จัดการ error ตามความเหมาะสม (ในที่นี้คือ return undefined หรือจะโยน error ต่อก็ได้)
-    return undefined;
+    return [];
   }
 }
 
