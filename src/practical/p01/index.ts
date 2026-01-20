@@ -57,5 +57,10 @@ export async function getEdgePosts(): Promise<SimplifiedPost[]> {
   }
 }
 
-getEdgePosts()
+const run = async () => {
+  const result = await getEdgePosts();
+  console.log(result);
+};
+
+run();
 
