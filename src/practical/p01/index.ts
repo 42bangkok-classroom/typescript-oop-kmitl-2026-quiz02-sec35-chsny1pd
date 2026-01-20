@@ -69,7 +69,7 @@ export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
 
     // ใช้ Array method (map) เพื่อสร้างอาเรย์ใหม่ที่มีเฉพาะ id และ title
     // หรือจะสร้าง Array ตรงๆ แล้วครอบด้วย map เพื่อดึงเฉพาะ field ที่ต้องการ
-    return [firstPost, lastPost].map(({ id, title }) => ({
+    return  [firstPost, lastPost].map(({ id, title }) => ({
       id,
       title
     }));
@@ -80,4 +80,10 @@ export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
   }
 }
 
-getEdgePosts()
+//เพื่อไม่ให้ติด Pending 
+const run = async () => {
+  const result = await getEdgePosts();
+  console.log(result);
+};
+
+run();
