@@ -41,7 +41,7 @@ interface SimplifiedPost {
 }
 
 //กำหนดฟังก์ชันแบบ Asynchronous ที่ส่งค่ากลับเป็น Array ของ SimplifiedPost หรือ undefined
-export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
+export async function PendingGetEdgePosts(): Promise<SimplifiedPost[] | undefined> {
   // ใช้ try เพื่อเริ่มการดักจับข้อผิดพลาด (Error Handling) 
   // หากการทำงานภายในบล็อกนี้มีปัญหา จะกระโดดไปที่ catch ทันที
   try {
@@ -90,10 +90,10 @@ export async function getEdgePosts(): Promise<SimplifiedPost[] | undefined> {
 }
 
 //เพื่อให้ค่าไม่ติด pending
-const run = async () => {
-    const result = await getEdgePosts();
+export const getEdgePosts = async () => {
+    const result = await PendingGetEdgePosts();
     console.log(result);
     return result
 };
 
-run()
+getEdgePosts()
