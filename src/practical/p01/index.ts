@@ -61,7 +61,7 @@ export async function PendingGetEdgePosts(): Promise<SimplifiedPost[] | undefine
      * ถ้าข้อมูลที่ได้มาเป็น Array ว่างเปล่า (ไม่มีโพสต์เลย) 
      * ให้หยุดการทำงานและส่ง Array เปล่ากลับออกไปทันที
      */
-    if (posts.length === 0) return [];
+    if (posts.length < 0) return [];
 
     // ใช้ Array method (map) เพื่อสร้างอาเรย์ใหม่ที่มีเฉพาะ id และ title
     // หรือจะสร้าง Array ตรงๆ แล้วครอบด้วย map เพื่อดึงเฉพาะ field ที่ต้องการ
@@ -77,11 +77,6 @@ export async function PendingGetEdgePosts(): Promise<SimplifiedPost[] | undefine
     const result = [firstPost, lastPost]
 
     return result
-
-    const run = async () => {
-    const result = await getEdgePosts();
-    console.log(result);
-    };
 
   } catch (error) {
     // จัดการ error ตามความเหมาะสม (ในที่นี้คือ return undefined หรือจะโยน error ต่อก็ได้)
