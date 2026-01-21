@@ -71,7 +71,7 @@ interface FilterPost {
 
 export async function getPostsByUser(userID:number):Promise<FilterPost[]>{
   try{
-    const response = await axios.get<Post[]>('"https://jsonplaceholder.typicode.com/posts/1"')
+    const response = await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
     const posts = response.data
     if(!posts.length) return[]
     const filterpost = posts.filter((p)=>p.userId==userID)
