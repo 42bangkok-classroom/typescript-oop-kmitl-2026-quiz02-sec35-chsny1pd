@@ -96,18 +96,18 @@ export async function countCommentsByPost():Promise<CommentCount> {
   try{
     const response = await axios.get<Comment[]>('https://jsonplaceholder.typicode.com/comments')
     const comments = response.data
-    if(!comments.length) return[]
-    const count = comments.reduce((acc:CommentCount, comment) => {
+    if(!comments.length) return{}
+    return comments.reduce((acc:CommentCount, comment) => {
       const postID = comment.postId
       if (postID === null || postID === undefined) {
         return acc;
       }
       acc[postID] = (acc[postID] || 0) + 1
       return acc
-    },[])
-    return count
+    },{})
+    //return count
   }
   catch(error){
-    return[]
+    return{}
   }
 }
